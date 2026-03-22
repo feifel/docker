@@ -1,3 +1,5 @@
 n8n/.env
 n8n/data/**
 postgres/.env
+.claude/settings.local.json
+pgadmin/data/**

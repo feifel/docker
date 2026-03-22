@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(docker compose:*)",
-      "Bash(chown -R 1000:1000 /home/roman/docker/n8n/data)"
-    ]
-  }
-}
