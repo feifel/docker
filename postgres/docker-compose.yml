@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data   # ← host folder mount
+    networks:
+      - shared_db
+    ports:
+      - "5432:5432"   # Expose to host for GUI tools (DBeaver, pgAdmin, etc.)
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+networks:
+  shared_db:
+    name: shared_db
+    driver: bridge
